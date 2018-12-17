@@ -212,7 +212,7 @@ enum TrinityStrings
     LANG_LIQUID_STATUS                  = 175,
     LANG_INVALID_GAMEOBJECT_TYPE        = 176,
     LANG_GAMEOBJECT_DAMAGED             = 177,
-    LANG_GRID_POSITION                  = 178,
+
 
     LANG_PHASESHIFT_STATUS              = 179,
     LANG_PHASESHIFT_PHASES              = 180,
@@ -221,7 +221,7 @@ enum TrinityStrings
     LANG_PHASE_FLAG_COSMETIC            = 183,
     LANG_PHASE_FLAG_PERSONAL            = 184,
 
-    //                                    185 not used
+    LANG_GRID_POSITION                  = 185,
     LANG_TRANSPORT_POSITION             = 186,
     // Room for more level 1              187-199 not used
 
@@ -1136,5 +1136,25 @@ enum TrinityStrings
     LANG_YOU_CHANGE_POWER                         = 11019,
     LANG_YOUR_POWER_CHANGED                       = 11020,
     LANG_INVALID_POWER_NAME                       = 11021
+
+    LANG_LIST_QUESTS                              = 11022,
+    LANG_LIST_QUESTS_DETAIL                       = 11023,
+
+    //Twin Peaks
+    LANG_BG_TP_START_TWO_MINUTES                  = 12000,
+    LANG_BG_TP_START_ONE_MINUTE                   = 12001,
+    LANG_BG_TP_START_HALF_MINUTE                  = 12002,
+    LANG_BG_TP_HAS_BEGUN                          = 12003,
+    LANG_BG_TP_CAPTURED_HF                        = 12004,
+    LANG_BG_TP_CAPTURED_AF                        = 12005,
+    LANG_BG_TP_DROPPED_HF                         = 12006,
+    LANG_BG_TP_DROPPED_AF                         = 12007,
+    LANG_BG_TP_RETURNED_AF                        = 12008,
+    LANG_BG_TP_RETURNED_HF                        = 12009,
+    LANG_BG_TP_PICKEDUP_HF                        = 12010,
+    LANG_BG_TP_PICKEDUP_AF                        = 12011,
+    LANG_BG_TP_F_PLACED                           = 12012,
+    LANG_BG_TP_ALLIANCE_FLAG_RESPAWNED            = 12013,
+    LANG_BG_TP_HORDE_FLAG_RESPAWNED               = 12014
 };
 #endif
