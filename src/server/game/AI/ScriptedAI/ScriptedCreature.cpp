@@ -474,6 +474,25 @@ void BossAI::_JustReachedHome()
     me->setActive(false);
 }
 
+void BossAI::_JustEngagedWith()
+{
+    if (instance)
+    {
+        // bosses do not respawn, check only on enter combat
+        if (!instance->CheckRequiredBosses(_bossId))
+        {
+            EnterEvadeMode(EVADE_REASON_SEQUENCE_BREAK);
+            return;
+        }
+        instance->SetBossState(_bossId, IN_PROGRESS);
+    }
+
+    me->SetCombatPulseDelay(5);
+    me->setActive(true);
+    DoZoneInCombat();
+    ScheduleTasks();
+}
+
 void BossAI::_EnterCombat()
 {
     if (instance)
@@ -585,6 +604,13 @@ void WorldBossAI::_JustDied()
 {
     events.Reset();
     summons.DespawnAll();
+}
+
+void WorldBossAI::_JustEngagedWith()
+{
+    Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0, 0.0f, true);
+    if (target)
+        AttackStart(target);
 }
 
 void WorldBossAI::_EnterCombat()

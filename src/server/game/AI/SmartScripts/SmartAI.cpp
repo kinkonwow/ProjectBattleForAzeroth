@@ -602,6 +602,14 @@ int SmartAI::Permissible(const Creature* creature)
     return PERMIT_BASE_NO;
 }
 
+void SmartAI::JustEngagedWith(Unit* enemy)
+{
+    if (IsAIControlled())
+        me->InterruptNonMeleeSpells(false); // must be before ProcessEvents
+
+    GetScript()->ProcessEventsFor(SMART_EVENT_AGGRO, enemy);
+}
+
 void SmartAI::JustReachedHome()
 {
     GetScript()->OnReset();

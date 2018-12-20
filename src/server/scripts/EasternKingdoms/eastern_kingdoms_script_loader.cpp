@@ -71,6 +71,7 @@ void AddSC_deadmines();                      //Deadmines
 void AddSC_instance_deadmines();
 void AddSC_boss_mr_smite();
 void AddSC_gnomeregan();                     //Gnomeregan
+void AddSC_gilneas_c1();                     //Gilneas
 void AddSC_instance_gnomeregan();
 void AddSC_boss_attumen();                   //Karazhan
 void AddSC_boss_curator();
@@ -262,6 +263,7 @@ void AddEasternKingdomsScripts()
     AddSC_boss_mr_smite();
     AddSC_instance_deadmines();
     AddSC_gnomeregan();                     //Gnomeregan
+    AddSC_gilneas_c1();                     //Gilneas
     AddSC_instance_gnomeregan();
     AddSC_boss_attumen();                   //Karazhan
     AddSC_boss_curator();

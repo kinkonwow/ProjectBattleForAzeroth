@@ -1026,6 +1026,7 @@ bool Aura::CanBeSaved() const
         case 44413: // Incanter's Absorption
         case 40075: // Fel Flak Fire
         case 55849: // Power Spark
+        case 68631: // Curse of the Worgen
             return false;
     }
 

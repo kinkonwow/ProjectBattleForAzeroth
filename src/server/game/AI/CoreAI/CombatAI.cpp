@@ -62,6 +62,7 @@ void CombatAI::InitializeAI()
     CreatureAI::InitializeAI();
 }
 
+
 void CombatAI::Reset()
 {
     events.Reset();
@@ -72,6 +73,17 @@ void CombatAI::JustDied(Unit* killer)
     for (SpellVct::iterator i = spells.begin(); i != spells.end(); ++i)
         if (AISpellInfo[*i].condition == AICOND_DIE)
             me->CastSpell(killer, *i, true);
+}
+
+void CombatAI::JustEngagedWith(Unit* who)
+{
+    for (SpellVct::iterator i = spells.begin(); i != spells.end(); ++i)
+    {
+        if (AISpellInfo[*i].condition == AICOND_AGGRO)
+            me->CastSpell(who, *i, false);
+        else if (AISpellInfo[*i].condition == AICOND_COMBAT)
+            events.ScheduleEvent(*i, AISpellInfo[*i].cooldown + rand32() % AISpellInfo[*i].cooldown);
+    }
 }
 
 void CombatAI::EnterCombat(Unit* who)
@@ -123,6 +135,30 @@ void CasterAI::InitializeAI()
             m_attackDist = GetAISpellInfo(*itr)->maxRange;
     if (m_attackDist == 30.0f)
         m_attackDist = MELEE_RANGE;
+}
+
+void CasterAI::JustEngagedWith(Unit* who)
+{
+    if (spells.empty())
+        return;
+
+    uint32 spell = rand32() % spells.size();
+    uint32 count = 0;
+    for (SpellVct::iterator itr = spells.begin(); itr != spells.end(); ++itr, ++count)
+    {
+        if (AISpellInfo[*itr].condition == AICOND_AGGRO)
+            me->CastSpell(who, *itr, false);
+        else if (AISpellInfo[*itr].condition == AICOND_COMBAT)
+        {
+            uint32 cooldown = GetAISpellInfo(*itr)->realCooldown;
+            if (count == spell)
+            {
+                DoCast(spells[spell]);
+                cooldown += me->GetCurrentSpellCastTime(*itr);
+            }
+            events.ScheduleEvent(*itr, cooldown);
+        }
+    }
 }
 
 void CasterAI::EnterCombat(Unit* who)

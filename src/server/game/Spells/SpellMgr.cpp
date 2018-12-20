@@ -3403,6 +3403,21 @@ void SpellMgr::LoadSpellInfoCorrections()
     });
     // ENDOF FIRELANDS SPELLS
 
+    // Gilneas Spell
+    // Summon Ravenous Worgen
+    // Serverside dummy target so we have to change to spell_target_position
+    ApplySpellFix({ 66925, 66836 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->TargetA = SpellImplicitTargetInfo(TARGET_DEST_DB);
+    });
+
+    // Pull-to
+    ApplySpellFix({ 67357 }, [](SpellInfo* spellInfo)
+    {
+        const_cast<SpellEffectInfo*>(spellInfo->GetEffect(EFFECT_0))->MiscValue = 150;
+    });
+    // Gilneas end
+    
     // Summon Master Li Fei
     ApplySpellFix({ 102445 }, [](SpellInfo* spellInfo)
     {

@@ -7765,6 +7765,9 @@ void Unit::SetInCombatState(bool PvP, Unit* enemy)
         {
             if (IsAIEnabled)
                 creature->AI()->EnterCombat(enemy);
+            else
+                creature->AI()->JustEngagedWith(enemy);
+ 
 
             if (creature->GetFormation())
                 creature->GetFormation()->MemberAttackStart(creature, enemy);
